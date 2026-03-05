@@ -1,0 +1,59 @@
+# Python
+**pycache**/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
+.env/
+.venv/
+env/
+
+# pytest / coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# mypy
+.mypy_cache/
+
+# LaTeX
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.fls
+*.fdb_latexmk
+
+# latexmk
+*.dvi
+*.fdb_latexmk
+*.fls
+
+# build folders
+latex-build/
+build/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
