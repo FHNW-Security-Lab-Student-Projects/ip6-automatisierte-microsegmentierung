@@ -1,0 +1,6 @@
+[project]
+name = "microseg"
+version = "0.1.0"
+authors = [{name="Martin Vogt"}]
+
+dependencies = []
