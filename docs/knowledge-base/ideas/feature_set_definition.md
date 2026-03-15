@@ -1,5 +1,7 @@
 # Feature Set Definition
 
+Diese Arbeit konkurrenziert nicht mit bestehenden Tools am Markt, sondern baut einen algorithmisches Forschungsprototypen.
+
 ## Table of Contents
 
 - [Feature Set Definition](#feature-set-definition)
