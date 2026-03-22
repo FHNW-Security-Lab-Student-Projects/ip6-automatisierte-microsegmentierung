@@ -3,4 +3,10 @@ name = "microseg"
 version = "0.1.0"
 authors = [{name="Martin Vogt"}]
 
-dependencies = []
+dependencies = [
+    "networkx>=3.6",
+    "matplotlib>=3.10.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
