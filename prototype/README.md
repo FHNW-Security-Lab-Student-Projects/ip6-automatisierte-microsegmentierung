@@ -218,7 +218,8 @@ Hilfsskripte zur Ausführung der Pipeline.
 Beispiel:
 
 ```
-run_pipeline.py
+source .venv/bin/activate
+python3 scripts/run_pipeline.py
 ```
 
 Dieses Skript führt die grundlegende Verarbeitungskette aus:
