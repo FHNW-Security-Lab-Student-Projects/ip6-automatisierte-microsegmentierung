@@ -1,6 +1,6 @@
 from microseg.ingestion.csv_loader import load_nodes, load_traffic
 from microseg.graph.graph_builder import build_graph, print_graph_summary
-from microseg.visualization.graph_viz import visualize_graph
+from microseg.visualization.renderers.pyvis_renderer import visualize_graph
 
 
 def main():
