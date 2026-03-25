@@ -1,5 +1,9 @@
 # Tutorials
 
+## Allgemein
+
+- [Handbook of Graphs and Networks in People](https://ona-book.org/gitbook/index.html)
+
 ## Algorithmen
 
 ### Leiden
