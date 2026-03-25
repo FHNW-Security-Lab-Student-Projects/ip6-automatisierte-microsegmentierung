@@ -112,11 +112,12 @@ Die Graphstruktur wird mit **NetworkX** implementiert.
 
 Graphbasierte Analyse der Netzwerkstruktur.
 
-Mögliche Analysemetriken:
+Implementierte Analysemetriken:
 
-- Degree Centrality
+- Degree (in/out)
+- Weighted Degree (Verbindungsstärke)
 - Betweenness Centrality
-- Edge Weight Analyse
+- Edge Weight Analyse inkl. Importance-Klassifikation (low / medium / high)
 - Abhängigkeitsanalyse zwischen Systemen
 
 Diese Metriken dienen dazu, wichtige Systeme und Kommunikationszentren im Netzwerk zu identifizieren.
