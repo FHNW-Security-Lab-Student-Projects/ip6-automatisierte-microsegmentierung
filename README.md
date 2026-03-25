@@ -13,6 +13,7 @@ Die Arbeit untersucht, wie Netzwerke als Graph modelliert werden können, um Kom
 ├── docs
 ├── papers
 │   └── pdf
+├── prototype
 └── thesis
 ```
 
@@ -35,6 +36,10 @@ papers/
 ```
 
 Die PDF-Dateien dienen als Grundlage für die Literaturrecherche und den Related-Work-Teil der Thesis.
+
+### `prototype/`
+
+Source Code des Prototypen. Detailierte Angaben in eigenen [README.md](./prototype/README.md)
 
 ### `thesis/`
 
