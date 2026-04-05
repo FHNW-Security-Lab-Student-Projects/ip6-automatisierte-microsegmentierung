@@ -1,0 +1,13 @@
+[project]
+name = "microseg"
+version = "2.0.0"
+authors = [{name="Martin Vogt"}]
+
+dependencies = [
+    "networkx>=3.6",
+    "matplotlib>=3.10.0",
+    "pyvis>=0.3.1"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
