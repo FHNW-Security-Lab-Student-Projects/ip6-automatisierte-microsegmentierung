@@ -1,4 +1,4 @@
-# Feature Set Definition
+# Feature Set Definition v1
 
 Diese Arbeit konkurrenziert nicht mit bestehenden Tools am Markt, sondern baut einen algorithmisches Forschungsprototypen.
 
