@@ -1,3 +1,5 @@
+# ⚠️ Frozen / Archived
+
 # Microsegmentation Prototype
 
 Dieses Verzeichnis enthält den **prototypischen Implementierungsteil** der Bachelorarbeit
