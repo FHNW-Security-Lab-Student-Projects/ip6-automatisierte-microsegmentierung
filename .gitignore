@@ -58,8 +58,8 @@ Thumbs.db
 # VSCode
 .vscode/
 
-# Temp files
-prototype/src/microseg/visualization/tmp/
+# Vendor / external libs
+**/lib/
 
-# pyvis libs
-prototype/lib/
+# Temporary files
+**/tmp/
