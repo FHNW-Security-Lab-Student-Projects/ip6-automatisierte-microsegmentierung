@@ -4,6 +4,7 @@ from microseg.topology.builder import TopologyBuilder
 from microseg.topology.graph import pretty_print_graph
 from microseg.graph.path_engine import PathEngine
 from microseg.synthesis.heuristic import HeuristicSynthesizer
+from microseg.visualization.renderers.pyvis_renderer import visualize_graph
 
 
 def main():
@@ -22,14 +23,14 @@ def main():
     # Build Graph
     # ---------------------------
     builder = TopologyBuilder(constraints)
-    graph = builder.build()
+    topology = builder.build()
 
-    # pretty_print_graph(graph.get_nodes(), graph.get_edges())
+    # pretty_print_graph(topology.get_nodes(), topology.get_edges())
 
     # ---------------------------
     # Graph Engine
     # ---------------------------
-    engine = PathEngine(graph)
+    engine = PathEngine(topology)
 
     # print(engine.get_path("User1", "User2"))
 
@@ -37,9 +38,14 @@ def main():
     # Synthesize Heuristics
     # ---------------------------
     synth = HeuristicSynthesizer(constraints, engine)
-    result = synth.run()
+    segmentation_result = synth.run()
 
-    print(result)
+    # print(result)
+
+    # ---------------------------
+    # Visualize
+    # ---------------------------
+    visualize_graph(topology.graph, segmentation_result)
 
 
 if __name__ == "__main__":
