@@ -3,6 +3,7 @@ from microseg.constraints.parser import parse_constraints
 from microseg.topology.builder import TopologyBuilder
 from microseg.topology.graph import pretty_print_graph
 from microseg.graph.path_engine import PathEngine
+from microseg.synthesis.heuristic import HeuristicSynthesizer
 
 
 def main():
@@ -30,18 +31,15 @@ def main():
     # ---------------------------
     engine = PathEngine(graph)
 
-    print(engine.get_path("User1", "User2"))
-    print(engine.get_path("User1", "User3"))
-    print(engine.get_path("User2", "User3"))
-    print(engine.get_path("User1", "Switch01"))
-    print(engine.get_path("User1", "Switch02"))
-    
-        
-    print(engine.is_reachable("User1", "User2"))
-    print(engine.is_reachable("User1", "User3"))
-    print(engine.is_reachable("User2", "User3"))
+    # print(engine.get_path("User1", "User2"))
 
+    # ---------------------------
+    # Synthesize Heuristics
+    # ---------------------------
+    synth = HeuristicSynthesizer(constraints, engine)
+    result = synth.run()
 
+    print(result)
 
 
 if __name__ == "__main__":

@@ -1,17 +1,19 @@
 ---
 config:
-  layout: dagre
+  layout: elk
 ---
 flowchart TB
-    u1["User1"] --- s1(["Switch01"])
-    u2["User2"] --- s2(["Switch02"])
+    u1["User1"] --- s1(["Switch1"])
+    u2["User2"] --- s2(["Switch2"])
     u3["User3"] --- s1
+    u4["User4"] --- s1
     u1 -. allow .- u2
-    u1 -. deny .- u3
+    u3 -. allow .- u4
     s1 === s2
 
     style u1 fill:#BBDEFB
     style u2 fill:#BBDEFB
     style u3 fill:#FFF9C4
-    linkStyle 3 stroke:#C8E6C9,fill:none
-    linkStyle 4 stroke:#FFCDD2,fill:none
+    style u4 fill:#FFF9C4
+    linkStyle 4 stroke:#00C853,fill:none
+    linkStyle 5 stroke:#00C853,fill:none
