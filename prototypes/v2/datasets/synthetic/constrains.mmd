@@ -1,0 +1,17 @@
+---
+config:
+  layout: dagre
+---
+flowchart TB
+    u1["User1"] --- s1(["Switch01"])
+    u2["User2"] --- s2(["Switch02"])
+    u3["User3"] --- s1
+    u1 -. allow .- u2
+    u1 -. deny .- u3
+    s1 === s2
+
+    style u1 fill:#BBDEFB
+    style u2 fill:#BBDEFB
+    style u3 fill:#FFF9C4
+    linkStyle 3 stroke:#C8E6C9,fill:none
+    linkStyle 4 stroke:#FFCDD2,fill:none

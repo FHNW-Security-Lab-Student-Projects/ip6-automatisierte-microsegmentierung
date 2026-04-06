@@ -1,0 +1,34 @@
+{
+	"constraints": [
+		{
+			"type": "ALLOW",
+			"src": "User1",
+			"dst": "User2"
+		},
+		{
+			"type": "DENY",
+			"src": "User1",
+			"dst": "User3"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "User1",
+			"switch": "Switch01"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "User2",
+			"switch": "Switch02"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "User3",
+			"switch": "Switch01"
+		},
+		{
+			"type": "CONNECTED",
+			"node_a": "Switch01",
+			"node_b": "Switch02"
+		}
+	]
+}
