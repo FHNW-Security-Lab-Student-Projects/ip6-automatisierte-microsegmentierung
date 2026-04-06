@@ -1,7 +1,7 @@
 import networkx as nx
 from typing import List
 
-from ..topology.models import Node, Edge
+from .models import Node, Edge
 
 
 class TopologyGraph:

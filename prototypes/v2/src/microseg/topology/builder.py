@@ -6,7 +6,7 @@ from microseg.constraints.models import (
 )
 
 from .models import Node, Edge, NodeType
-from ..graph.graph import TopologyGraph
+from .graph import TopologyGraph
 
 
 class TopologyBuilder:
