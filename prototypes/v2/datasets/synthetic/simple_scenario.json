@@ -1,44 +1,12 @@
 {
 	"constraints": [
-		{
-			"type": "ALLOW",
-			"src": "User1",
-			"dst": "User2"
-		},
-		{
-			"type": "ALLOW",
-			"src": "User3",
-			"dst": "User4"
-		},
-		{
-			"type": "DENY",
-			"src": "User1",
-			"dst": "User3"
-		},
-		{
-			"type": "LOCATED_AT",
-			"node": "User1",
-			"switch": "Switch1"
-		},
-		{
-			"type": "LOCATED_AT",
-			"node": "User2",
-			"switch": "Switch2"
-		},
-		{
-			"type": "LOCATED_AT",
-			"node": "User3",
-			"switch": "Switch1"
-		},
-		{
-			"type": "LOCATED_AT",
-			"node": "User4",
-			"switch": "Switch1"
-		},
-		{
-			"type": "CONNECTED",
-			"node_a": "Switch1",
-			"node_b": "Switch2"
-		}
+		{ "type": "ALLOW", "src": "User1", "dst": "User2" },
+		{ "type": "ALLOW", "src": "User3", "dst": "User4" },
+		{ "type": "DENY", "src": "User1", "dst": "User3" },
+		{ "type": "LOCATED_AT", "node": "User1", "switch": "Switch1" },
+		{ "type": "LOCATED_AT", "node": "User2", "switch": "Switch2" },
+		{ "type": "LOCATED_AT", "node": "User3", "switch": "Switch1" },
+		{ "type": "LOCATED_AT", "node": "User4", "switch": "Switch1" },
+		{ "type": "CONNECTED", "node_a": "Switch1", "node_b": "Switch2" }
 	]
 }

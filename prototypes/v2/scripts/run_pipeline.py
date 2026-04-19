@@ -5,13 +5,15 @@ from microseg.topology.graph import pretty_print_graph
 from microseg.graph.path_engine import PathEngine
 from microseg.synthesis.heuristic import HeuristicSynthesizer
 from microseg.visualization.renderers.pyvis_renderer import visualize_graph
+from microseg.validation.validator import ConstraintValidator
 
 
 def main():
     # ---------------------------
     # Load Constrains
     # ---------------------------
-    constraints = parse_constraints("datasets/synthetic/simple_scenario.json")
+    # constraints = parse_constraints("datasets/synthetic/simple_scenario.json")
+    constraints = parse_constraints("datasets/synthetic/smal_company_network.json")
 
     # grouped = group_constraints(constraints)
     # for group_name, items in grouped.items():
@@ -38,14 +40,22 @@ def main():
     # Synthesize Heuristics
     # ---------------------------
     synth = HeuristicSynthesizer(constraints, engine)
-    segmentation_result = synth.run()
+    segmentation = synth.run()
 
     # print(result)
 
     # ---------------------------
+    # Synthesize Heuristics
+    # ---------------------------
+    validator = ConstraintValidator(constraints, engine, segmentation)
+    result = validator.validate()
+
+    print(result)
+
+    # ---------------------------
     # Visualize
     # ---------------------------
-    visualize_graph(topology.graph, segmentation_result)
+    visualize_graph(topology.graph, segmentation)
 
 
 if __name__ == "__main__":
