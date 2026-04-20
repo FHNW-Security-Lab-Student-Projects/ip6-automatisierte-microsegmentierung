@@ -13,6 +13,10 @@ class Z3Synthesizer:
 
         self.solver = Solver()
 
+        # Tracking and Mapping
+        self.tracked_constraints = []
+        self.constraint_map = {}
+
         # V(node, vlan) → Bool
         self.V = {
             (node, vlan): Bool(f"V_{node}_{vlan}") for node in nodes for vlan in vlans
@@ -28,6 +32,40 @@ class Z3Synthesizer:
 
         if self.solver.check() != sat:
             print("UNSAT")
+
+            core = self.solver.unsat_core()
+
+            # -------------------------
+            # GROUPING LOGIC
+            # -------------------------
+            grouped = {}
+
+            for c in core:
+                name = str(c)
+
+                # Remove VLAN suffix for grouping
+                if "_v" in name:
+                    base = name.split("_v")[0]
+                else:
+                    base = name
+
+                if base not in grouped:
+                    grouped[base] = []
+
+                grouped[base].append(name)
+
+            # -------------------------
+            # PRETTY OUTPUT
+            # -------------------------
+            print("\nConflict Constraints:")
+
+            for base, variants in grouped.items():
+                if variants[0] in self.constraint_map:
+                    real = self.constraint_map[variants[0]]
+                    print(f"- {base} → {real}")
+                else:
+                    print(f"- {base}")
+
             return None
 
         model = self.solver.model()
@@ -68,7 +106,12 @@ class Z3Synthesizer:
                 )
                 vlan_conditions.append(cond)
 
-            self.solver.add(Or(vlan_conditions))
+            name = f"ALLOW_{c.src}_{c.dst}"
+            constraint = Or(vlan_conditions)
+
+            self.solver.assert_and_track(constraint, name)
+            self.tracked_constraints.append(name)
+            self.constraint_map[name] = c
 
     # -------------------------
     # DENY Constraints
@@ -83,15 +126,19 @@ class Z3Synthesizer:
                 continue
 
             for v in self.vlans:
-                self.solver.add(
-                    Not(
-                        And(
-                            self.V[(c.src, v)],
-                            self.V[(c.dst, v)],
-                            *[self.V[(node, v)] for node in path],
-                        )
+                name = f"DENY_{c.src}_{c.dst}_v{v}"
+
+                constraint = Not(
+                    And(
+                        self.V[(c.src, v)],
+                        self.V[(c.dst, v)],
+                        *[self.V[(node, v)] for node in path],
                     )
                 )
+
+                self.solver.assert_and_track(constraint, name)
+                self.tracked_constraints.append(name)
+                self.constraint_map[name] = c
 
     # -------------------------
     # Extract Solution
@@ -101,7 +148,7 @@ class Z3Synthesizer:
 
         for node in self.nodes:
             for v in self.vlans:
-                if model.evaluate(self.V[(node, v)]):
+                if model.evaluate(self.V[(node, v)]) == True:
                     result.assign(node, v)
 
         result.finalize()

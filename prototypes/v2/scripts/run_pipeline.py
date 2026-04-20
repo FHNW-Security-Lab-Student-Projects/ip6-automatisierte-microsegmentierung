@@ -9,71 +9,105 @@ from microseg.visualization.renderers.pyvis_renderer import visualize_graph
 from microseg.validation.validator import ConstraintValidator
 
 
+def print_section(title):
+    print(f"\n=== {title} ===")
+
+
 def main():
     # ---------------------------
-    # Load Constrains
+    # LOAD
     # ---------------------------
+    print_section("LOAD")
+
     constraints = parse_constraints("datasets/synthetic/simple_scenario.json")
     # constraints = parse_constraints("datasets/synthetic/smal_company_network.json")
-
-    # grouped = group_constraints(constraints)
-    # for group_name, items in grouped.items():
-    #     print(f"\n=== {group_name.upper()} ===")
-    #     for c in items:
-    #         print(c)
+    print(f"Constraints loaded: {len(constraints)}")
 
     # ---------------------------
-    # Build Graph
+    # TOPOLOGY
     # ---------------------------
+    print_section("TOPOLOGY")
+
     builder = TopologyBuilder(constraints)
     topology = builder.build()
 
-    # pretty_print_graph(topology.get_nodes(), topology.get_edges())
+    num_nodes = len(topology.graph.nodes())
+    num_edges = len(topology.graph.edges())
+
+    print(f"Nodes: {num_nodes}")
+    print(f"Edges: {num_edges}")
 
     # ---------------------------
-    # Graph Engine
+    # GRAPH ENGINE
     # ---------------------------
     engine = PathEngine(topology)
 
-    # print(engine.get_path("User1", "User2"))
+    # ---------------------------
+    # HEURISTIC
+    # ---------------------------
+    print_section("HEURISTIC")
 
-    # ---------------------------
-    # Synthesize Heuristics
-    # ---------------------------
     synth = HeuristicSynthesizer(constraints, engine)
     heuristic_segmentation = synth.run()
 
-    # print(result)
-
-    # ---------------------------
-    # Synthesize Heuristics
-    # ---------------------------
     validator = ConstraintValidator(constraints, engine, heuristic_segmentation)
     heuristic_validation = validator.validate()
 
-    print(heuristic_validation)
-
-    # print("Heuristic:")
-    # print(heuristic_segmentation)
+    if heuristic_validation.is_valid():
+        print("Status: SUCCESS")
+    else:
+        print("Status: FAILED")
+        print(heuristic_validation)
 
     # ---------------------------
-    # Synthesize Z3
+    # Z3 SOLVER
     # ---------------------------
+    print_section("Z3 SOLVER")
+
     nodes = list(topology.graph.nodes())
-    num_nodes = len(nodes)
-    vlans = [i * 10 for i in range(1, num_nodes + 1)]  # Worstcase 1 VLAN pro Node
+    vlans = [10, 20, 30, 40]
 
     solver = Z3Synthesizer(constraints, engine, nodes, vlans)
     z3_segmentation = solver.solve()
 
-    print("\nZ3:")
-    print(z3_segmentation)
+    if z3_segmentation:
+        print("Status: SAT")
+    else:
+        print("Status: UNSAT (see conflicts above)")
 
     # ---------------------------
-    # Visualize
+    # RESULT
     # ---------------------------
-    # visualize_graph(topology.graph, heuristic_segmentation)
-    # visualize_graph(topology.graph, z3_segmentation)
+    print_section("RESULT")
+
+    if heuristic_validation.is_valid():
+        print("Heuristic Solution:")
+        print(heuristic_segmentation)
+    else:
+        print("Heuristic Solution: INVALID")
+
+    if z3_segmentation:
+        print("\nZ3 Solution:")
+        print(z3_segmentation)
+    else:
+        print("Z3 Solution: NONE")
+
+    # ---------------------------
+    # VISUALIZATION
+    # ---------------------------
+    print_section("VISUALIZATION")
+
+    if heuristic_validation.is_valid():
+        print("Rendering Heuristic...")
+        visualize_graph(topology.graph, heuristic_segmentation)
+    else:
+        print("Skipping Heuristic (invalid)")
+
+    if z3_segmentation:
+        print("Rendering Z3...")
+        visualize_graph(topology.graph, z3_segmentation)
+    else:
+        print("Skipping Z3 (no solution)")
 
 
 if __name__ == "__main__":
