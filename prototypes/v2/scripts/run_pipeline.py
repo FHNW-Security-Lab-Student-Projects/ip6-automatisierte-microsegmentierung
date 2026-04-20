@@ -1,5 +1,6 @@
 from microseg.constraints.parser import parse_constraints, group_constraints
 from microseg.constraints.parser import parse_constraints
+from microseg.synthesis.z3_solver import Z3Synthesizer
 from microseg.topology.builder import TopologyBuilder
 from microseg.topology.graph import pretty_print_graph
 from microseg.graph.path_engine import PathEngine
@@ -12,8 +13,8 @@ def main():
     # ---------------------------
     # Load Constrains
     # ---------------------------
-    # constraints = parse_constraints("datasets/synthetic/simple_scenario.json")
-    constraints = parse_constraints("datasets/synthetic/smal_company_network.json")
+    constraints = parse_constraints("datasets/synthetic/simple_scenario.json")
+    # constraints = parse_constraints("datasets/synthetic/smal_company_network.json")
 
     # grouped = group_constraints(constraints)
     # for group_name, items in grouped.items():
@@ -40,22 +41,39 @@ def main():
     # Synthesize Heuristics
     # ---------------------------
     synth = HeuristicSynthesizer(constraints, engine)
-    segmentation = synth.run()
+    heuristic_segmentation = synth.run()
 
     # print(result)
 
     # ---------------------------
     # Synthesize Heuristics
     # ---------------------------
-    validator = ConstraintValidator(constraints, engine, segmentation)
-    result = validator.validate()
+    validator = ConstraintValidator(constraints, engine, heuristic_segmentation)
+    heuristic_validation = validator.validate()
 
-    print(result)
+    print(heuristic_validation)
+
+    # print("Heuristic:")
+    # print(heuristic_segmentation)
+
+    # ---------------------------
+    # Synthesize Z3
+    # ---------------------------
+    nodes = list(topology.graph.nodes())
+    num_nodes = len(nodes)
+    vlans = [i * 10 for i in range(1, num_nodes + 1)]  # Worstcase 1 VLAN pro Node
+
+    solver = Z3Synthesizer(constraints, engine, nodes, vlans)
+    z3_segmentation = solver.solve()
+
+    print("\nZ3:")
+    print(z3_segmentation)
 
     # ---------------------------
     # Visualize
     # ---------------------------
-    visualize_graph(topology.graph, segmentation)
+    # visualize_graph(topology.graph, heuristic_segmentation)
+    # visualize_graph(topology.graph, z3_segmentation)
 
 
 if __name__ == "__main__":
