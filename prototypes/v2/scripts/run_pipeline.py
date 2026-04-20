@@ -19,8 +19,8 @@ def main():
     # ---------------------------
     print_section("LOAD")
 
-    constraints = parse_constraints("datasets/synthetic/simple_scenario.json")
-    # constraints = parse_constraints("datasets/synthetic/smal_company_network.json")
+    # constraints = parse_constraints("datasets/synthetic/simple_scenario.json")
+    constraints = parse_constraints("datasets/synthetic/smal_company_network.json")
     print(f"Constraints loaded: {len(constraints)}")
 
     # ---------------------------
