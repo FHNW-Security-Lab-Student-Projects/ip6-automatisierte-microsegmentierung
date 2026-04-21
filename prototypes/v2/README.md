@@ -5,6 +5,16 @@ Dieses Verzeichnis enthält den **prototypischen Implementierungsteil** der Bach
 
 ---
 
+# Quickstart
+
+```bash
+cd prototypes/v2
+source .venv/bin/activate
+python scripts/run_pipeline.py
+```
+
+---
+
 # Systemübersicht
 
 Der Prototyp implementiert eine Verarbeitungspipeline zur Analyse von Netzwerkkommunikation.
