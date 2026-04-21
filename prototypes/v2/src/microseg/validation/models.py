@@ -1,12 +1,24 @@
 class ValidationResult:
     def __init__(self):
+        """
+        Track validation issues: separate lists for ALLOW and DENY violations.
+        """
+
         self.allow_violations = []
         self.deny_violations = []
 
     def is_valid(self):
+        """
+        Return True if no violations exist.
+        """
+
         return not self.allow_violations and not self.deny_violations
 
     def __str__(self):
+        """
+        Return formatted validation summary; includes violations if present.
+        """
+
         lines = []
 
         if self.is_valid():
