@@ -7,11 +7,19 @@ from microseg.validation.models import ValidationResult
 
 class ConstraintValidator:
     def __init__(self, constraints: List, path_engine: PathEngine, segmentation):
+        """
+        Initialize with constraints, path engine, and computed segmentation.
+        """
+
         self.constraints = constraints
         self.path_engine = path_engine
         self.segmentation = segmentation
 
     def validate(self) -> ValidationResult:
+        """
+        Run ALLOW and DENY checks; returns ValidationResult with violations.
+        """
+
         result = ValidationResult()
 
         self._check_allow(result)
@@ -19,10 +27,11 @@ class ConstraintValidator:
 
         return result
 
-    # -------------------------
-    # ALLOW Check
-    # -------------------------
     def _check_allow(self, result: ValidationResult):
+        """
+        Verify all ALLOW constraints; record violations if communication fails.
+        """
+
         for c in self.constraints:
             if not isinstance(c, AllowConstraint):
                 continue
@@ -33,10 +42,11 @@ class ConstraintValidator:
             if not self._is_allowed(src, dst):
                 result.allow_violations.append(f"{src} → {dst}")
 
-    # -------------------------
-    # DENY Check
-    # -------------------------
     def _check_deny(self, result: ValidationResult):
+        """
+        Verify all DENY constraints; record violations if communication is possible.
+        """
+
         for c in self.constraints:
             if not isinstance(c, DenyConstraint):
                 continue
@@ -47,16 +57,18 @@ class ConstraintValidator:
             if self._is_allowed(src, dst):
                 result.deny_violations.append(f"{src} ↔ {dst}")
 
-    # -------------------------
-    # Core Logic
-    # -------------------------
     def _is_allowed(self, src: str, dst: str) -> bool:
+        """
+        Check if src→dst is allowed: requires path, shared VLAN, and valid
+        VLAN propagation across all nodes on the path.
+        """
+
         path = self.path_engine.get_path(src, dst)
 
         if not path:
             return False
 
-        # Prüfe ob ein gemeinsames VLAN existiert
+        # Check if a common VLAN exists
         src_vlans = self.segmentation.get_vlans(src)
         dst_vlans = self.segmentation.get_vlans(dst)
 
@@ -65,7 +77,7 @@ class ConstraintValidator:
         if not common_vlans:
             return False
 
-        # Prüfe VLAN Propagation entlang des Pfads
+        # Check VLAN propagation along the path
         for vlan in common_vlans:
             if self._vlan_valid_on_path(path, vlan):
                 return True
@@ -73,6 +85,10 @@ class ConstraintValidator:
         return False
 
     def _vlan_valid_on_path(self, path, vlan) -> bool:
+        """
+        Ensure given VLAN is consistently assigned to every node on the path.
+        """
+
         for node in path:
             if vlan not in self.segmentation.get_vlans(node):
                 return False

@@ -6,6 +6,10 @@ from microseg.visualization.styling import generate_vlan_colors, get_node_color
 
 
 def visualize_graph(G, segmentation, output_file: str = "network.html"):
+    """
+    Create interactive graph visualization with PyVis: colors nodes by VLAN,
+    adds tooltips, writes HTML to file, and opens it in browser.
+    """
 
     net = Network(
         height="800px",
@@ -17,18 +21,14 @@ def visualize_graph(G, segmentation, output_file: str = "network.html"):
 
     net.force_atlas_2based()
 
-    # ---------------------------
     # VLAN Colors
-    # ---------------------------
     all_vlans = set()
     for vlans in segmentation.node_to_vlans.values():
         all_vlans.update(vlans)
 
     vlan_colors = generate_vlan_colors(all_vlans)
 
-    # ---------------------------
     # Add Nodes
-    # ---------------------------
     for node, data in G.nodes(data=True):
 
         color = get_node_color(node, data, segmentation, vlan_colors)
@@ -46,9 +46,7 @@ def visualize_graph(G, segmentation, output_file: str = "network.html"):
             size=20,
         )
 
-    # ---------------------------
     # Add Edges
-    # ---------------------------
     for src, dst in G.edges():
         net.add_edge(
             src,

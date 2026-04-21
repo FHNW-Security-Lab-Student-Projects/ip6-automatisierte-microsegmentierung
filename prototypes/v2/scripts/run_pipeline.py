@@ -19,8 +19,8 @@ def main():
     # ---------------------------
     print_section("LOAD")
 
-    # constraints = parse_constraints("datasets/synthetic/simple_scenario.json")
-    constraints = parse_constraints("datasets/synthetic/smal_company_network.json")
+    constraints = parse_constraints("datasets/synthetic/simple_scenario.json")
+    # constraints = parse_constraints("datasets/synthetic/smal_company_network.json")
     print(f"Constraints loaded: {len(constraints)}")
 
     # ---------------------------
@@ -50,8 +50,10 @@ def main():
     synth = HeuristicSynthesizer(constraints, engine)
     heuristic_segmentation = synth.run()
 
-    validator = ConstraintValidator(constraints, engine, heuristic_segmentation)
-    heuristic_validation = validator.validate()
+    heuristic_validator = ConstraintValidator(
+        constraints, engine, heuristic_segmentation
+    )
+    heuristic_validation = heuristic_validator.validate()
 
     if heuristic_validation.is_valid():
         print("Status: SUCCESS")
@@ -70,7 +72,10 @@ def main():
     solver = Z3Synthesizer(constraints, engine, nodes, vlans)
     z3_segmentation = solver.solve()
 
-    if z3_segmentation:
+    z3_validator = ConstraintValidator(constraints, engine, z3_segmentation)
+    z3_validation = z3_validator.validate()
+
+    if z3_validation.is_valid():
         print("Status: SAT")
     else:
         print("Status: UNSAT (see conflicts above)")

@@ -12,6 +12,13 @@ from .base import Constraint
 
 
 def parse_constraints(file_path: str) -> List[Constraint]:
+    """
+    Load constraints from JSON and map each entry to its Constraint subclass
+    based on the "type" field. Expects required keys per type.
+
+    Raises ValueError for unknown types.
+    """
+
     with open(file_path, "r") as f:
         data = json.load(f)
 
@@ -39,6 +46,12 @@ def parse_constraints(file_path: str) -> List[Constraint]:
 
 
 def group_constraints(constraints):
+    """
+    Group Constraint objects by their lowercase type name.
+
+    Returns a dict like {"allow": [...], "deny": [...], ...}.
+    """
+
     grouped = {}
 
     for c in constraints:

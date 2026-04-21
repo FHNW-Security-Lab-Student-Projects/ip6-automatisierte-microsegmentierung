@@ -8,6 +8,11 @@ from .models import SegmentationResult
 
 class HeuristicSynthesizer:
     def __init__(self, constraints: List, path_engine: PathEngine):
+        """
+        Initialize with constraints and path engine; prepares result container,
+        VLAN counter, and pre-filters DENY constraints.
+        """
+
         self.constraints = constraints
         self.path_engine = path_engine
         self.result = SegmentationResult()
@@ -18,6 +23,11 @@ class HeuristicSynthesizer:
         ]
 
     def run(self) -> SegmentationResult:
+        """
+        Process all ALLOW constraints, build segmentation result,
+        finalize it, and return.
+        """
+
         allow_constraints = [
             c for c in self.constraints if isinstance(c, AllowConstraint)
         ]
@@ -28,10 +38,12 @@ class HeuristicSynthesizer:
         self.result.finalize()
         return self.result
 
-    # -------------------------
-    # ALLOW processing
-    # -------------------------
     def _handle_allow(self, constraint: AllowConstraint):
+        """
+        Handle a single ALLOW: compute path, select VLAN, and assign it
+        to all nodes on the path. Skips if no path exists.
+        """
+
         src = constraint.src
         dst = constraint.dst
 
@@ -46,10 +58,12 @@ class HeuristicSynthesizer:
         for node in path:
             self._assign_node(node, vlan)
 
-    # -------------------------
-    # VLAN selection (DENY-aware)
-    # -------------------------
     def _select_vlan(self, path):
+        """
+        Choose a VLAN for the path: reuse an existing one if it doesn't
+        violate DENY constraints, otherwise allocate a new VLAN.
+        """
+
         candidate_vlans = set()
 
         for node in path:
@@ -63,10 +77,12 @@ class HeuristicSynthesizer:
         # Otherwise allocate a new VLAN
         return self._new_vlan()
 
-    # -------------------------
-    # Assignment with host constraint check
-    # -------------------------
     def _assign_node(self, node: str, vlan: int):
+        """
+        Assign VLAN to node; ensures hosts belong to only one VLAN.
+        Raises ValueError on violation.
+        """
+
         node_type = self._get_node_type(node)
 
         if node_type == NodeType.HOST:
@@ -80,10 +96,12 @@ class HeuristicSynthesizer:
 
         self.result.assign(node, vlan)
 
-    # -------------------------
-    # DENY constraint validation
-    # -------------------------
     def _violates_deny(self, path, vlan):
+        """
+        Check if assigning VLAN to this path would violate any DENY
+        constraints with already assigned nodes.
+        """
+
         for node in path:
             for other_node, vlans in self.result.node_to_vlans.items():
                 if vlan not in vlans:
@@ -95,21 +113,18 @@ class HeuristicSynthesizer:
         return False
 
     def _is_denied(self, a, b):
+        """Return True if a and b are explicitly denied to communicate."""
         for c in self.deny_constraints:
             if (c.src == a and c.dst == b) or (c.src == b and c.dst == a):
                 return True
         return False
 
-    # -------------------------
-    # Node type lookup helper
-    # -------------------------
     def _get_node_type(self, node_id: str):
+        """Lookup and return node type from the topology graph."""
         return self.path_engine.graph.nodes[node_id]["type"]
 
-    # -------------------------
-    # VLAN ID generator
-    # -------------------------
     def _new_vlan(self):
+        """Generate and return a new VLAN ID (increments by 10)."""
         vlan = self.current_vlan
         self.current_vlan += 10
         return vlan
