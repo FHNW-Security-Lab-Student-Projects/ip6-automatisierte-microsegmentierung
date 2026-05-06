@@ -1,0 +1,23 @@
+{
+	"nodes": ["User1", "User2", "User3", "User4", "Printer1"],
+	"switches": ["Switch1", "Switch2"],
+
+	"groups": [
+		{ "name": "ICT", "members": ["User1", "User2"] },
+		{ "name": "Office", "members": ["User3", "User4"] }
+	],
+
+	"constraints": [
+		{ "type": "ALLOW", "src": "User1", "dst": "Printer1" },
+		{ "type": "DENY", "src": "ICT", "dst": "Office" },
+		{ "type": "DENY", "src": "User2", "dst": "Printer1" },
+
+		{ "type": "LOCATED_AT", "node": "User1", "switch": "Switch1" },
+		{ "type": "LOCATED_AT", "node": "User2", "switch": "Switch2" },
+		{ "type": "LOCATED_AT", "node": "User3", "switch": "Switch1" },
+		{ "type": "LOCATED_AT", "node": "User4", "switch": "Switch1" },
+		{ "type": "LOCATED_AT", "node": "Printer1", "switch": "Switch2" },
+
+		{ "type": "CONNECTED", "node_a": "Switch1", "node_b": "Switch2" }
+	]
+}
