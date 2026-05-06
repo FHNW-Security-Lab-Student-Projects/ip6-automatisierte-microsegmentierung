@@ -1,0 +1,23 @@
+---
+config:
+  layout: elk
+---
+flowchart TB
+    u1["User1"] --- s1(["Switch1"])
+    u2["User2"] --- s2(["Switch2"])
+    u3["User3"] --- s1
+    u4["User4"] --- s1
+    p1["Printer1"] --- s2
+    u1 -. allow .- u2
+    u3 -. allow .- u4
+    u1 -. allow .- p1
+    s1 === s2
+
+    style u1 fill:#BBDEFB
+    style u2 fill:#BBDEFB
+    style p1 fill:#BBFBE5
+    style u3 fill:#FFF9C4
+    style u4 fill:#FFF9C4
+    linkStyle 5 stroke:#00C853,fill:none
+    linkStyle 6 stroke:#00C853,fill:none
+    linkStyle 7 stroke:#00C853,fill:none

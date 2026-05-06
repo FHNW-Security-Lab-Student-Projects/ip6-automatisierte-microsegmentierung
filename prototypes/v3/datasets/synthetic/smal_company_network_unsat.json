@@ -1,0 +1,74 @@
+{
+	"nodes": [
+		"ENG_1",
+		"ENG_2",
+		"ENG_3",
+		"ENG_4",
+		"HR_1",
+		"HR_2",
+		"SALES_1",
+		"SALES_2",
+		"IT_1",
+		"IT_2"
+	],
+
+	"switches": [
+		"SW_ACCESS_1",
+		"SW_ACCESS_2",
+		"SW_ACCESS_3",
+		"SW_ACCESS_4",
+		"SW_CORE_1",
+		"SW_CORE_2"
+	],
+
+	"groups": [
+		{ "name": "ENG", "members": ["ENG_1", "ENG_2", "ENG_3", "ENG_4"] },
+		{ "name": "HR", "members": ["HR_1", "HR_2"] },
+		{ "name": "SALES", "members": ["SALES_1", "SALES_2"] },
+		{ "name": "IT", "members": ["IT_1", "IT_2"] }
+	],
+
+	"constraints": [
+		{ "type": "ALLOW", "src": "IT_1", "dst": "SALES_2" },
+
+		{ "type": "DENY", "src": "ENG", "dst": "HR" },
+		{ "type": "DENY", "src": "ENG", "dst": "SALES" },
+		{ "type": "DENY", "src": "ENG", "dst": "IT" },
+
+		{ "type": "DENY", "src": "HR", "dst": "ENG" },
+		{ "type": "DENY", "src": "HR", "dst": "SALES" },
+		{ "type": "DENY", "src": "HR", "dst": "IT" },
+
+		{ "type": "DENY", "src": "SALES", "dst": "ENG" },
+		{ "type": "DENY", "src": "SALES", "dst": "HR" },
+		{ "type": "DENY", "src": "SALES", "dst": "IT" },
+
+		{ "type": "DENY", "src": "IT", "dst": "ENG" },
+		{ "type": "DENY", "src": "IT", "dst": "HR" },
+		{ "type": "DENY", "src": "IT", "dst": "SALES" },
+
+		{ "type": "LOCATED_AT", "node": "ENG_1", "switch": "SW_CORE_1" },
+		{ "type": "LOCATED_AT", "node": "ENG_2", "switch": "SW_CORE_1" },
+		{ "type": "LOCATED_AT", "node": "ENG_3", "switch": "SW_ACCESS_2" },
+		{ "type": "LOCATED_AT", "node": "ENG_4", "switch": "SW_ACCESS_1" },
+
+		{ "type": "LOCATED_AT", "node": "HR_1", "switch": "SW_ACCESS_1" },
+		{ "type": "LOCATED_AT", "node": "HR_2", "switch": "SW_ACCESS_2" },
+
+		{ "type": "LOCATED_AT", "node": "SALES_1", "switch": "SW_ACCESS_2" },
+		{ "type": "LOCATED_AT", "node": "SALES_2", "switch": "SW_ACCESS_3" },
+
+		{ "type": "LOCATED_AT", "node": "IT_1", "switch": "SW_ACCESS_3" },
+		{ "type": "LOCATED_AT", "node": "IT_2", "switch": "SW_ACCESS_4" },
+
+		{ "type": "CONNECTED", "node_a": "SW_CORE_1", "node_b": "SW_CORE_2" },
+		{ "type": "CONNECTED", "node_a": "SW_CORE_2", "node_b": "SW_ACCESS_1" },
+		{
+			"type": "CONNECTED",
+			"node_a": "SW_ACCESS_1",
+			"node_b": "SW_ACCESS_2"
+		},
+		{ "type": "CONNECTED", "node_a": "SW_CORE_2", "node_b": "SW_ACCESS_3" },
+		{ "type": "CONNECTED", "node_a": "SW_CORE_2", "node_b": "SW_ACCESS_4" }
+	]
+}

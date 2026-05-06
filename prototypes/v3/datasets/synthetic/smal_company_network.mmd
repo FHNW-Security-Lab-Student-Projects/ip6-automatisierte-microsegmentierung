@@ -1,0 +1,49 @@
+---
+config:
+  layout: elk
+---
+flowchart TB
+ subgraph Engineering["Engineering"]
+        ENG_1["ENG_1"]
+        ENG_2["ENG_2"]
+        ENG_3["ENG_3"]
+        ENG_4["ENG_4"]
+  end
+ subgraph HR["HR"]
+        HR_1["HR_1"]
+        HR_2["HR_2"]
+  end
+ subgraph Sales["Sales"]
+        SALES_1["SALES_1"]
+        SALES_2["SALES_2"]
+  end
+ subgraph IT["IT"]
+        IT_1["IT_1"]
+        IT_2["IT_2"]
+  end
+ subgraph Network["Network"]
+        SW_CORE_1["SW_CORE_1"]
+        SW_CORE_2["SW_CORE_2"]
+        SW_ACCESS_1["SW_ACCESS_1"]
+        SW_ACCESS_2["SW_ACCESS_2"]
+        SW_ACCESS_3["SW_ACCESS_3"]
+        SW_ACCESS_4["SW_ACCESS_4"]
+  end
+    ENG_1 --> SW_CORE_1
+    ENG_2 --> SW_CORE_1
+    ENG_3 --> SW_ACCESS_2
+    ENG_4 --> SW_ACCESS_1
+    HR_1 --> SW_ACCESS_1
+    HR_2 --> SW_ACCESS_2
+    SALES_1 --> SW_ACCESS_2
+    SALES_2 --> SW_ACCESS_3
+    IT_1 --> SW_ACCESS_3
+    IT_2 --> SW_ACCESS_4
+    SW_CORE_1 --- SW_CORE_2
+    SW_CORE_2 --- SW_ACCESS_1 & SW_ACCESS_3 & SW_ACCESS_4
+    SW_ACCESS_1 --- SW_ACCESS_2
+
+    style Sales fill:#FFCDD2
+    style IT fill:#FFE0B2
+    style Engineering fill:#FFF9C4
+    style HR fill:#C8E6C9
