@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Network Builder</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/style.css') }}"
+		/>
+	</head>
+	<body>
+		<h1>Network Builder</h1>
+
+		<div class="disclaimer">
+			<strong>Disclaimer:</strong>
+			This tool does not validate syntax, logical consistency, rule
+			conflicts, topology correctness, or whether the configured network
+			makes technical sense. The generated JSON must be reviewed manually
+			before use.
+		</div>
+
+		<div class="layout">
+			<div class="editor">
+				<!-- NODES -->
+				<section>
+					<h2>Nodes</h2>
+
+					<form id="nodeForm">
+						<input
+							type="text"
+							id="nodeName"
+							placeholder="Node name"
+						/>
+						<button type="submit">Add Node</button>
+					</form>
+
+					<ul id="nodeList"></ul>
+				</section>
+
+				<!-- GROUPS -->
+				<section>
+					<h2>Groups</h2>
+
+					<form id="groupForm">
+						<input
+							type="text"
+							id="groupName"
+							placeholder="Group name"
+						/>
+
+						<div id="groupMembers"></div>
+
+						<button type="submit">Create Group</button>
+					</form>
+
+					<ul id="groupList"></ul>
+				</section>
+
+				<!-- SWITCHES -->
+				<section>
+					<h2>Switches</h2>
+
+					<form id="switchForm">
+						<input
+							type="text"
+							id="switchName"
+							placeholder="Switch name"
+						/>
+						<button type="submit">Add Switch</button>
+					</form>
+
+					<ul id="switchList"></ul>
+				</section>
+
+				<!-- SWITCH CONNECTIONS -->
+				<section>
+					<h2>Switch Connections</h2>
+
+					<form id="switchConnectionForm">
+						<select id="switchA"></select>
+
+						<select id="switchB"></select>
+
+						<button type="submit">Connect Switches</button>
+					</form>
+
+					<ul id="switchConnectionList"></ul>
+				</section>
+
+				<!-- ATTACH -->
+				<section>
+					<h2>Attach Node To Switch</h2>
+
+					<form id="attachForm">
+						<select id="attachNode"></select>
+
+						<select id="attachSwitch"></select>
+
+						<button type="submit">Attach</button>
+					</form>
+
+					<ul id="attachmentList"></ul>
+				</section>
+
+				<!-- RULES -->
+				<section>
+					<h2>Rules</h2>
+
+					<form id="ruleForm">
+						<select id="ruleType">
+							<option value="ALLOW">ALLOW</option>
+							<option value="DENY">DENY</option>
+						</select>
+
+						<select id="ruleSrc"></select>
+
+						<select id="ruleDst"></select>
+
+						<button type="submit">Add Rule</button>
+					</form>
+
+					<ul id="ruleList"></ul>
+				</section>
+
+				<!-- EXPORT -->
+				<section>
+					<h2>Import / Export</h2>
+
+					<button type="button" id="downloadBtn">
+						Download JSON
+					</button>
+
+					<input type="file" id="importFile" accept=".json" />
+				</section>
+			</div>
+
+			<div class="previewPanel">
+				<!-- JSON PREVIEW -->
+				<section>
+					<div class="sectionHeader">
+						<h2>JSON Preview</h2>
+
+						<button type="button" id="copyJsonBtn">
+							Copy JSON
+						</button>
+					</div>
+
+					<pre id="jsonPreview"></pre>
+				</section>
+			</div>
+		</div>
+		<script
+			type="module"
+			src="{{ url_for('static', filename='js/app.js') }}"
+		></script>
+	</body>
+</html>
