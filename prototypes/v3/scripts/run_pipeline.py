@@ -7,6 +7,8 @@ from microseg.synthesis.heuristic import HeuristicSynthesizer
 from microseg.visualization.renderers.pyvis_renderer import visualize_graph
 from microseg.validation.validator import ConstraintValidator
 
+import time
+
 
 def print_section(title):
     print(f"\n=== {title} ===")
@@ -18,9 +20,12 @@ def main():
     # ---------------------------
     print_section("LOAD")
 
-    # constraints, groups = load_dataset("datasets/synthetic/simple_scenario.json")
+    # constraints, groups = load_dataset("datasets/synthetic/60_node_company_network.json")
+    # constraints, groups = load_dataset("datasets/synthetic/80_node_company_network.json")
+    # constraints, groups = load_dataset("datasets/synthetic/120_node_company_network.json")
+    constraints, groups = load_dataset("datasets/synthetic/simple_scenario.json")
     # constraints, groups = load_dataset("datasets/synthetic/simple_scenario_unsat.json")
-    constraints, groups = load_dataset("datasets/synthetic/smal_company_network.json")
+    # constraints, groups = load_dataset("datasets/synthetic/smal_company_network.json")
     # constraints, groups = load_dataset("datasets/synthetic/smal_company_network_unsat.json")
     print(f"Constraints loaded: {len(constraints)}")
 
@@ -62,8 +67,11 @@ def main():
 
     heuristic_segmentation = None
     heuristic_validation = None
+    heuristic_time = None
 
     try:
+        start_time = time.perf_counter()
+
         synth = HeuristicSynthesizer(constraints, engine)
         heuristic_segmentation = synth.run()
 
@@ -71,9 +79,18 @@ def main():
             constraints, engine, heuristic_segmentation
         )
         heuristic_validation = heuristic_validator.validate()
+
+        end_time = time.perf_counter()
+        heuristic_time = end_time - start_time
+        print(f"Execution Time: {heuristic_time:.6f} seconds")
+
         print("Status: SUCCESS")
 
     except Exception as e:
+        end_time = time.perf_counter()
+        heuristic_time = end_time - start_time
+        print(f"Execution Time: {heuristic_time:.6f} seconds")
+
         print("Status: FAILED")
         print(f"Reason: {e}")
 
@@ -85,33 +102,38 @@ def main():
     nodes = list(topology.graph.nodes())
     vlans = [10, 20, 30, 40]
 
+    start_time = time.perf_counter()
+
     solver = Z3Synthesizer(constraints, engine, nodes, vlans)
     z3_segmentation = solver.solve()
 
     if z3_segmentation is None:
-        print("Status: UNSAT (no solution)")
         z3_validation = None
+
+        end_time = time.perf_counter()
+        z3_time = end_time - start_time
+
+        print("Status: UNSAT (no solution)")
+        print(f"Execution Time: {z3_time:.6f} seconds")
 
     else:
         z3_validator = ConstraintValidator(constraints, engine, z3_segmentation)
         z3_validation = z3_validator.validate()
+
+        end_time = time.perf_counter()
+        z3_time = end_time - start_time
 
         if z3_validation.is_valid():
             print("Status: SAT")
         else:
             print("Status: INVALID (unexpected)")
 
+        print(f"Execution Time: {z3_time:.6f} seconds")
+
     # ---------------------------
     # RESULT
     # ---------------------------
     print_section("RESULT")
-
-    # print("--- debug ----")
-    # # pretty_print_graph(topology.graph.nodes, topology.graph.edges)
-    # print(topology.graph.nodes)
-    # print(topology.graph.edges)
-
-    # print("--- debug ---- \n")
 
     # --- HEURISTIC ---
     if heuristic_segmentation is None:
@@ -156,6 +178,22 @@ def main():
 
     else:
         print("Skipping Z3 (no solution)")
+
+    # ---------------------------
+    # PERFORMANCE
+    # ---------------------------
+    print_section("PERFORMANCE")
+
+    if heuristic_time is not None:
+        print(f"Heuristic Time: {heuristic_time:.6f} seconds")
+
+    if z3_time is not None:
+        print(f"Z3 Time:        {z3_time:.6f} seconds")
+
+    if heuristic_time is not None and z3_time is not None:
+        ratio = z3_time / heuristic_time if heuristic_time > 0 else float("inf")
+
+    print(f"\nZ3 / Heuristic Ratio: {ratio:.2f}x")
 
 
 if __name__ == "__main__":
