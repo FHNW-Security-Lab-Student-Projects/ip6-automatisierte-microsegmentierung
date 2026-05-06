@@ -49,6 +49,49 @@ Diese boolesche Entscheidungsvariable modelliert die VLAN-Zugehörigkeit eines N
 Der Wertebereich ${0,1}$ stellt sicher, dass ein Node entweder Mitglied eines VLANs ist (1) oder nicht (0).
 Damit wird das Problem in eine klassische SAT/SMT-Struktur überführt.
 
+## 2.1 Gruppen (High-Level Abstraktion)
+
+In realen Netzwerken werden Systeme häufig nicht einzeln, sondern in logischen Gruppen organisiert (z. B. _ICT_, _Office_, _Servers_).
+
+Eine Gruppe wird definiert als:
+
+$$
+G = \{ n_1, n_2, \dots, n_k \}
+$$
+
+wobei jedes Element $ \ n_1\ $ ein Node im Netzwerk ist.
+
+### Semantik von Gruppen
+
+Gruppen haben im Modell folgende Bedeutung:
+
+#### 1. Implizite Kommunikation innerhalb der Gruppe
+
+Alle Nodes einer Gruppe dürfen miteinander kommunizieren:
+
+$$
+\forall a,b \in G,\; a \neq b:\quad ALLOW(a,b)
+$$
+
+Dies entspricht einem vollständig verbundenen Subgraphen (Clique).
+
+#### 2. Verwendung in Constraints
+
+Gruppen können in High-Level Constraints verwendet werden:
+
+ALLOW ICT -> Office  
+DENY Office -> Printer
+
+Diese werden definiert als:
+
+$$
+ALLOW(G_1, G_2) \equiv \forall a \in G_1, \forall b \in G_2:\; ALLOW(a,b)
+$$
+
+$$
+DENY(G_1, G_2) \equiv \forall a \in G_1, \forall b \in G_2:\; DENY(a,b)
+$$
+
 # 3. Host Constraint
 
 Hosts dürfen genau ein VLAN haben:
