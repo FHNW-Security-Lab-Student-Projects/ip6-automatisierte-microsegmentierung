@@ -1,4 +1,4 @@
-# Constraint Solver Modell (Z3) – Microsegmentation v2
+# Constraint Solver Modell (Z3) – Microsegmentation
 
 ## Ziel
 
