@@ -8,7 +8,7 @@ Dieses Verzeichnis enthält den **prototypischen Implementierungsteil** der Bach
 # Quickstart
 
 ```bash
-cd prototypes/v2
+cd prototypes/v3
 source .venv/bin/activate
 python scripts/run_pipeline.py
 ```
@@ -44,7 +44,7 @@ Die einzelnen Komponenten sind modular implementiert, sodass unterschiedliche An
 # Repository-Struktur
 
 ```
-prototypes/v2
+prototypes/v3
 │
 ├── datasets
 │   └── scenarios
