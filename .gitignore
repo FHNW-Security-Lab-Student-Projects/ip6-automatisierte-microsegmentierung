@@ -67,3 +67,4 @@ Thumbs.db
 # Experiment results
 **/logs/*
 **/experiments/results.*
+**/output/*

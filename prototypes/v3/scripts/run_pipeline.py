@@ -100,15 +100,18 @@ def main():
         print(f"Reason: {e}")
         
     # HEURISTIC METRICS
-    if heuristic_segmentation:
+    heuristic_success = (
+        heuristic_validation is not None
+        and heuristic_validation.is_valid()
+    )
+
+    if heuristic_success:
         vlan_count_h = len(heuristic_segmentation.vlan_to_nodes)
         print(f"METRIC heuristic_vlans={vlan_count_h}")
-
-    if heuristic_validation:
-        print(f"METRIC heuristic_valid={heuristic_validation.is_valid()}")
-
-    if heuristic_time is not None:
         print(f"METRIC heuristic_time={heuristic_time}")
+    else:
+        print("METRIC heuristic_vlans=")
+        print("METRIC heuristic_time=")
 
     # ---------------------------
     # Z3 SOLVER
@@ -149,15 +152,20 @@ def main():
     # Z3 METRICS
     print(f"METRIC z3_sat={z3_segmentation is not None}")
 
-    if z3_segmentation:
+    z3_success = (
+        z3_validation is not None
+        and z3_validation.is_valid()
+    )
+
+    print(f"METRIC z3_valid={z3_success}")
+
+    if z3_success:
         vlan_count_z3 = len(z3_segmentation.vlan_to_nodes)
         print(f"METRIC z3_vlans={vlan_count_z3}")
-
-    if z3_validation:
-        print(f"METRIC z3_valid={z3_validation.is_valid()}")
-
-    if z3_time is not None:
         print(f"METRIC z3_time={z3_time}")
+    else:
+        print("METRIC z3_vlans=")
+        print("METRIC z3_time=")
 
     # ---------------------------
     # RESULT
@@ -224,16 +232,22 @@ def main():
     # ---------------------------
     print_section("PERFORMANCE")
 
-    if heuristic_time is not None:
+    if heuristic_success:
         print(f"Heuristic Time: {heuristic_time:.6f} seconds")
+    else:
+        print("Heuristic Time: FAILED")
 
-    if z3_time is not None:
+    if z3_success:
         print(f"Z3 Time:        {z3_time:.6f} seconds")
+    else:
+        print("Z3 Time:        FAILED")
 
-    if heuristic_time is not None and z3_time is not None:
-        ratio = z3_time / heuristic_time if heuristic_time > 0 else float("inf")
+    if heuristic_success and z3_success:
+        ratio = z3_time / heuristic_time
         print(f"\nZ3 / Heuristic Ratio: {ratio:.2f}x")
         print(f"METRIC ratio={ratio}")
+    else:
+        print("METRIC ratio=")
 
 
 if __name__ == "__main__":
