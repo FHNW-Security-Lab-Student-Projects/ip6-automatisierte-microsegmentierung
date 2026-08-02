@@ -1,0 +1,107 @@
+{
+    "nodes": [
+        "Host1",
+        "Host2",
+        "Host3",
+        "Host4",
+        "Host5"
+    ],
+    "switches": [
+        "Switch1",
+        "Switch2",
+        "Switch3"
+    ],
+    "groups": [],
+    "constraints": [
+        {
+            "type": "ALLOW",
+            "src": "Host1",
+            "dst": "Host5"
+        },
+        {
+            "type": "DENY",
+            "src": "Host4",
+            "dst": "Host3"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host5",
+            "dst": "Host4"
+        },
+        {
+            "type": "DENY",
+            "src": "Host4",
+            "dst": "Host5"
+        },
+        {
+            "type": "DENY",
+            "src": "Host2",
+            "dst": "Host3"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host2",
+            "dst": "Host5"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host5",
+            "dst": "Host1"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host3",
+            "dst": "Host5"
+        },
+        {
+            "type": "DENY",
+            "src": "Host4",
+            "dst": "Host1"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host5",
+            "dst": "Host2"
+        },
+        {
+            "type": "CONNECTED",
+            "node_a": "Switch1",
+            "node_b": "Switch2"
+        },
+        {
+            "type": "CONNECTED",
+            "node_a": "Switch1",
+            "node_b": "Switch3"
+        },
+        {
+            "type": "CONNECTED",
+            "node_a": "Switch2",
+            "node_b": "Switch3"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host1",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host2",
+            "switch": "Switch2"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host3",
+            "switch": "Switch3"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host4",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host5",
+            "switch": "Switch2"
+        }
+    ]
+}

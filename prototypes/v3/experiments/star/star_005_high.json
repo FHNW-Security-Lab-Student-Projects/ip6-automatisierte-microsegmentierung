@@ -1,0 +1,82 @@
+{
+	"nodes": ["Host1", "Host2", "Host3", "Host4", "Host5"],
+	"switches": ["Switch1"],
+	"groups": [],
+	"constraints": [
+		{
+			"type": "ALLOW",
+			"src": "Host1",
+			"dst": "Host5"
+		},
+		{
+			"type": "ALLOW",
+			"src": "Host2",
+			"dst": "Host1"
+		},
+		{
+			"type": "ALLOW",
+			"src": "Host1",
+			"dst": "Host4"
+		},
+		{
+			"type": "ALLOW",
+			"src": "Host3",
+			"dst": "Host1"
+		},
+		{
+			"type": "DENY",
+			"src": "Host2",
+			"dst": "Host3"
+		},
+		{
+			"type": "DENY",
+			"src": "Host3",
+			"dst": "Host4"
+		},
+		{
+			"type": "DENY",
+			"src": "Host5",
+			"dst": "Host4"
+		},
+		{
+			"type": "DENY",
+			"src": "Host4",
+			"dst": "Host2"
+		},
+		{
+			"type": "ALLOW",
+			"src": "Host3",
+			"dst": "Host2"
+		},
+		{
+			"type": "ALLOW",
+			"src": "Host1",
+			"dst": "Host2"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host1",
+			"switch": "Switch1"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host2",
+			"switch": "Switch1"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host3",
+			"switch": "Switch1"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host4",
+			"switch": "Switch1"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host5",
+			"switch": "Switch1"
+		}
+	]
+}

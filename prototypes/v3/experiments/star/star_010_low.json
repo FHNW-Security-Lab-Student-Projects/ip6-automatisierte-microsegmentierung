@@ -1,0 +1,93 @@
+{
+	"nodes": [
+		"Host1",
+		"Host2",
+		"Host3",
+		"Host4",
+		"Host5",
+		"Host6",
+		"Host7",
+		"Host8",
+		"Host9",
+		"Host10"
+	],
+	"switches": ["Switch1"],
+	"groups": [],
+	"constraints": [
+		{
+			"type": "ALLOW",
+			"src": "Host7",
+			"dst": "Host3"
+		},
+		{
+			"type": "ALLOW",
+			"src": "Host3",
+			"dst": "Host7"
+		},
+		{
+			"type": "ALLOW",
+			"src": "Host8",
+			"dst": "Host6"
+		},
+		{
+			"type": "ALLOW",
+			"src": "Host2",
+			"dst": "Host3"
+		},
+		{
+			"type": "ALLOW",
+			"src": "Host10",
+			"dst": "Host7"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host1",
+			"switch": "Switch1"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host2",
+			"switch": "Switch1"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host3",
+			"switch": "Switch1"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host4",
+			"switch": "Switch1"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host5",
+			"switch": "Switch1"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host6",
+			"switch": "Switch1"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host7",
+			"switch": "Switch1"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host8",
+			"switch": "Switch1"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host9",
+			"switch": "Switch1"
+		},
+		{
+			"type": "LOCATED_AT",
+			"node": "Host10",
+			"switch": "Switch1"
+		}
+	]
+}
