@@ -22,28 +22,28 @@
     "constraints": [
         {
             "type": "ALLOW",
-            "src": "Host4",
+            "src": "Host6",
             "dst": "Host8"
         },
         {
             "type": "ALLOW",
-            "src": "Host1",
+            "src": "Host7",
+            "dst": "Host9"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host2",
+            "dst": "Host9"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host3",
             "dst": "Host7"
         },
         {
             "type": "ALLOW",
-            "src": "Host8",
-            "dst": "Host4"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host5",
+            "src": "Host3",
             "dst": "Host10"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host6",
-            "dst": "Host7"
         },
         {
             "type": "CONNECTED",

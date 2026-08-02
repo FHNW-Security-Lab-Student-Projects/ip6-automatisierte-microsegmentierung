@@ -20,18 +20,18 @@
     "constraints": [
         {
             "type": "ALLOW",
-            "src": "Host2",
-            "dst": "Host5"
+            "src": "Host4",
+            "dst": "Host9"
         },
         {
             "type": "ALLOW",
-            "src": "Host8",
-            "dst": "Host5"
+            "src": "Host6",
+            "dst": "Host9"
         },
         {
             "type": "ALLOW",
-            "src": "Host10",
-            "dst": "Host5"
+            "src": "Host3",
+            "dst": "Host4"
         },
         {
             "type": "DENY",
@@ -40,57 +40,57 @@
         },
         {
             "type": "ALLOW",
-            "src": "Host7",
+            "src": "Host1",
             "dst": "Host3"
         },
         {
             "type": "ALLOW",
-            "src": "Host9",
-            "dst": "Host5"
-        },
-        {
-            "type": "DENY",
-            "src": "Host6",
-            "dst": "Host10"
-        },
-        {
-            "type": "DENY",
-            "src": "Host9",
-            "dst": "Host8"
+            "src": "Host1",
+            "dst": "Host4"
         },
         {
             "type": "ALLOW",
-            "src": "Host5",
-            "dst": "Host2"
+            "src": "Host3",
+            "dst": "Host9"
         },
         {
             "type": "ALLOW",
-            "src": "Host9",
+            "src": "Host1",
+            "dst": "Host6"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host2",
             "dst": "Host10"
         },
         {
             "type": "ALLOW",
             "src": "Host7",
-            "dst": "Host5"
+            "dst": "Host8"
         },
         {
-            "type": "ALLOW",
+            "type": "DENY",
             "src": "Host8",
-            "dst": "Host10"
+            "dst": "Host9"
         },
         {
             "type": "ALLOW",
             "src": "Host2",
+            "dst": "Host8"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host7",
             "dst": "Host10"
         },
         {
-            "type": "ALLOW",
-            "src": "Host9",
-            "dst": "Host1"
+            "type": "DENY",
+            "src": "Host4",
+            "dst": "Host7"
         },
         {
             "type": "ALLOW",
-            "src": "Host2",
+            "src": "Host3",
             "dst": "Host6"
         },
         {

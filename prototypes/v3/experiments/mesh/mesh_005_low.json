@@ -15,8 +15,8 @@
     "constraints": [
         {
             "type": "ALLOW",
-            "src": "Host5",
-            "dst": "Host2"
+            "src": "Host1",
+            "dst": "Host4"
         },
         {
             "type": "ALLOW",
@@ -26,7 +26,7 @@
         {
             "type": "ALLOW",
             "src": "Host1",
-            "dst": "Host2"
+            "dst": "Host3"
         },
         {
             "type": "CONNECTED",

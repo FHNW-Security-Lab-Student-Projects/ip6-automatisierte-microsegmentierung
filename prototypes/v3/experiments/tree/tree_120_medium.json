@@ -143,203 +143,153 @@
     "constraints": [
         {
             "type": "ALLOW",
-            "src": "Host87",
-            "dst": "Host120"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host65",
-            "dst": "Host47"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host105",
-            "dst": "Host109"
+            "src": "Host18",
+            "dst": "Host52"
         },
         {
             "type": "DENY",
             "src": "Host62",
-            "dst": "Host106"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host68",
             "dst": "Host113"
         },
         {
             "type": "ALLOW",
-            "src": "Host11",
-            "dst": "Host91"
+            "src": "Host53",
+            "dst": "Host114"
         },
         {
             "type": "ALLOW",
-            "src": "Host96",
-            "dst": "Host92"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host94",
-            "dst": "Host50"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host8",
-            "dst": "Host26"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host13",
-            "dst": "Host63"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host63",
-            "dst": "Host51"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host10",
+            "src": "Host38",
             "dst": "Host46"
         },
         {
-            "type": "ALLOW",
-            "src": "Host69",
-            "dst": "Host10"
-        },
-        {
             "type": "DENY",
-            "src": "Host105",
-            "dst": "Host96"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host69",
-            "dst": "Host82"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host43",
-            "dst": "Host23"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host81",
-            "dst": "Host38"
-        },
-        {
-            "type": "DENY",
-            "src": "Host113",
-            "dst": "Host92"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host105",
-            "dst": "Host38"
-        },
-        {
-            "type": "DENY",
-            "src": "Host119",
-            "dst": "Host84"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host115",
-            "dst": "Host4"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host77",
-            "dst": "Host69"
-        },
-        {
-            "type": "DENY",
-            "src": "Host8",
-            "dst": "Host24"
-        },
-        {
-            "type": "DENY",
-            "src": "Host112",
+            "src": "Host75",
             "dst": "Host105"
         },
         {
             "type": "ALLOW",
-            "src": "Host88",
-            "dst": "Host52"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host72",
-            "dst": "Host46"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host50",
-            "dst": "Host56"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host18",
-            "dst": "Host16"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host93",
-            "dst": "Host88"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host22",
-            "dst": "Host33"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host56",
-            "dst": "Host48"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host31",
-            "dst": "Host30"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host32",
-            "dst": "Host55"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host11",
-            "dst": "Host112"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host108",
-            "dst": "Host115"
+            "src": "Host60",
+            "dst": "Host69"
         },
         {
             "type": "DENY",
-            "src": "Host85",
-            "dst": "Host37"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host63",
+            "src": "Host48",
             "dst": "Host71"
         },
         {
             "type": "ALLOW",
-            "src": "Host6",
-            "dst": "Host46"
+            "src": "Host15",
+            "dst": "Host110"
         },
         {
             "type": "DENY",
-            "src": "Host31",
-            "dst": "Host10"
+            "src": "Host93",
+            "dst": "Host100"
         },
         {
             "type": "ALLOW",
-            "src": "Host102",
-            "dst": "Host16"
+            "src": "Host89",
+            "dst": "Host101"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host22",
+            "dst": "Host48"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host4",
+            "dst": "Host65"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host68",
+            "dst": "Host112"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host96",
+            "dst": "Host116"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host3",
+            "dst": "Host85"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host35",
+            "dst": "Host110"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host5",
+            "dst": "Host115"
+        },
+        {
+            "type": "DENY",
+            "src": "Host55",
+            "dst": "Host94"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host35",
+            "dst": "Host68"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host79",
+            "dst": "Host83"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host69",
+            "dst": "Host96"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host33",
+            "dst": "Host59"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host25",
+            "dst": "Host105"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host10",
+            "dst": "Host82"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host56",
+            "dst": "Host70"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host15",
+            "dst": "Host71"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host9",
+            "dst": "Host109"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host35",
+            "dst": "Host90"
+        },
+        {
+            "type": "DENY",
+            "src": "Host45",
+            "dst": "Host53"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host20",
+            "dst": "Host88"
         },
         {
             "type": "CONNECTED",

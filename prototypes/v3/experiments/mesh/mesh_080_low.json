@@ -95,53 +95,53 @@
     "constraints": [
         {
             "type": "ALLOW",
-            "src": "Host19",
-            "dst": "Host41"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host36",
-            "dst": "Host31"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host54",
-            "dst": "Host17"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host41",
-            "dst": "Host38"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host79",
-            "dst": "Host21"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host42",
-            "dst": "Host9"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host6",
-            "dst": "Host46"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host28",
-            "dst": "Host4"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host23",
-            "dst": "Host14"
+            "src": "Host13",
+            "dst": "Host16"
         },
         {
             "type": "ALLOW",
             "src": "Host58",
-            "dst": "Host54"
+            "dst": "Host59"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host56",
+            "dst": "Host79"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host37",
+            "dst": "Host56"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host25",
+            "dst": "Host33"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host2",
+            "dst": "Host50"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host56",
+            "dst": "Host80"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host3",
+            "dst": "Host64"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host15",
+            "dst": "Host69"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host44",
+            "dst": "Host76"
         },
         {
             "type": "CONNECTED",

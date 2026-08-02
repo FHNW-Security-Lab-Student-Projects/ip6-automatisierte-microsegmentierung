@@ -51,53 +51,53 @@
     "constraints": [
         {
             "type": "ALLOW",
-            "src": "Host31",
-            "dst": "Host17"
+            "src": "Host9",
+            "dst": "Host12"
         },
         {
             "type": "ALLOW",
-            "src": "Host28",
-            "dst": "Host16"
+            "src": "Host14",
+            "dst": "Host30"
         },
         {
             "type": "ALLOW",
-            "src": "Host40",
-            "dst": "Host9"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host23",
-            "dst": "Host37"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host39",
-            "dst": "Host36"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host17",
-            "dst": "Host5"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host11",
-            "dst": "Host18"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host33",
-            "dst": "Host9"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host11",
-            "dst": "Host10"
+            "src": "Host5",
+            "dst": "Host13"
         },
         {
             "type": "ALLOW",
             "src": "Host36",
-            "dst": "Host37"
+            "dst": "Host39"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host4",
+            "dst": "Host32"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host12",
+            "dst": "Host15"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host2",
+            "dst": "Host30"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host10",
+            "dst": "Host16"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host27",
+            "dst": "Host31"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host16",
+            "dst": "Host22"
         },
         {
             "type": "CONNECTED",

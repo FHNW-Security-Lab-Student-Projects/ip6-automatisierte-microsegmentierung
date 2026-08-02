@@ -14,34 +14,29 @@
     "groups": [],
     "constraints": [
         {
-            "type": "DENY",
-            "src": "Host4",
-            "dst": "Host3"
+            "type": "ALLOW",
+            "src": "Host3",
+            "dst": "Host4"
         },
         {
             "type": "ALLOW",
-            "src": "Host4",
-            "dst": "Host1"
+            "src": "Host2",
+            "dst": "Host5"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host1",
+            "dst": "Host3"
+        },
+        {
+            "type": "DENY",
+            "src": "Host1",
+            "dst": "Host2"
         },
         {
             "type": "ALLOW",
             "src": "Host1",
             "dst": "Host4"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host5",
-            "dst": "Host3"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host1",
-            "dst": "Host3"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host4",
-            "dst": "Host5"
         },
         {
             "type": "CONNECTED",

@@ -17,18 +17,23 @@
     "constraints": [
         {
             "type": "ALLOW",
-            "src": "Host5",
+            "src": "Host1",
             "dst": "Host2"
         },
         {
             "type": "ALLOW",
             "src": "Host2",
-            "dst": "Host3"
+            "dst": "Host5"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host1",
+            "dst": "Host5"
         },
         {
             "type": "DENY",
-            "src": "Host3",
-            "dst": "Host2"
+            "src": "Host1",
+            "dst": "Host4"
         },
         {
             "type": "ALLOW",
@@ -41,24 +46,9 @@
             "dst": "Host3"
         },
         {
-            "type": "ALLOW",
-            "src": "Host2",
-            "dst": "Host5"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host4",
-            "dst": "Host1"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host2",
-            "dst": "Host1"
-        },
-        {
             "type": "DENY",
-            "src": "Host1",
-            "dst": "Host2"
+            "src": "Host4",
+            "dst": "Host5"
         },
         {
             "type": "DENY",

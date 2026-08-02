@@ -32,18 +32,33 @@
     "constraints": [
         {
             "type": "ALLOW",
+            "src": "Host5",
+            "dst": "Host16"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host7",
+            "dst": "Host11"
+        },
+        {
+            "type": "ALLOW",
             "src": "Host3",
             "dst": "Host8"
         },
         {
             "type": "ALLOW",
-            "src": "Host17",
-            "dst": "Host14"
+            "src": "Host1",
+            "dst": "Host16"
         },
         {
             "type": "ALLOW",
-            "src": "Host10",
-            "dst": "Host16"
+            "src": "Host2",
+            "dst": "Host13"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host3",
+            "dst": "Host11"
         },
         {
             "type": "ALLOW",
@@ -52,33 +67,18 @@
         },
         {
             "type": "ALLOW",
-            "src": "Host20",
-            "dst": "Host8"
+            "src": "Host7",
+            "dst": "Host14"
         },
         {
             "type": "ALLOW",
-            "src": "Host12",
-            "dst": "Host1"
+            "src": "Host3",
+            "dst": "Host6"
         },
         {
             "type": "ALLOW",
-            "src": "Host5",
-            "dst": "Host8"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host15",
-            "dst": "Host19"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host19",
-            "dst": "Host7"
-        },
-        {
-            "type": "ALLOW",
-            "src": "Host11",
-            "dst": "Host2"
+            "src": "Host4",
+            "dst": "Host17"
         },
         {
             "type": "CONNECTED",
