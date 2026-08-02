@@ -7,8 +7,9 @@ from microseg.synthesis.heuristic import HeuristicSynthesizer
 from microseg.visualization.renderers.pyvis_renderer import visualize_graph
 from microseg.validation.validator import ConstraintValidator
 
+import sys
 import time
-
+from pathlib import Path
 
 def print_section(title):
     print(f"\n=== {title} ===")
@@ -16,17 +17,19 @@ def print_section(title):
 
 def main():
     # ---------------------------
+    # FLAGS
+    # ---------------------------
+    visualize = "--no-vis" not in sys.argv
+    
+    # ---------------------------
     # LOAD
     # ---------------------------
     print_section("LOAD")
 
-    # constraints, groups = load_dataset("datasets/synthetic/60_node_company_network.json")
-    # constraints, groups = load_dataset("datasets/synthetic/80_node_company_network.json")
-    # constraints, groups = load_dataset("datasets/synthetic/120_node_company_network.json")
-    constraints, groups = load_dataset("datasets/synthetic/simple_scenario.json")
-    # constraints, groups = load_dataset("datasets/synthetic/simple_scenario_unsat.json")
-    # constraints, groups = load_dataset("datasets/synthetic/smal_company_network.json")
-    # constraints, groups = load_dataset("datasets/synthetic/smal_company_network_unsat.json")
+    dataset_path = sys.argv[1] if len(sys.argv) > 1 else "datasets/synthetic/simple_scenario.json"
+    dataset_name = Path(dataset_path).stem
+    constraints, groups = load_dataset(dataset_path)
+
     print(f"Constraints loaded: {len(constraints)}")
 
     # ---------------------------
@@ -52,8 +55,10 @@ def main():
     num_nodes = len(topology.graph.nodes())
     num_edges = len(topology.graph.edges())
 
-    print(f"Nodes: {num_nodes}")
-    print(f"Edges: {num_edges}")
+    # METRICS
+    print(f"METRIC nodes={num_nodes}")
+    print(f"METRIC edges={num_edges}")
+    print(f"METRIC constraints={len(constraints)}")
 
     # ---------------------------
     # GRAPH ENGINE
@@ -82,17 +87,33 @@ def main():
 
         end_time = time.perf_counter()
         heuristic_time = end_time - start_time
+        
         print(f"Execution Time: {heuristic_time:.6f} seconds")
-
         print("Status: SUCCESS")
 
     except Exception as e:
         end_time = time.perf_counter()
         heuristic_time = end_time - start_time
+        
         print(f"Execution Time: {heuristic_time:.6f} seconds")
-
         print("Status: FAILED")
         print(f"Reason: {e}")
+        
+    # HEURISTIC METRICS
+    heuristic_success = (
+        heuristic_validation is not None
+        and heuristic_validation.is_valid()
+    )
+    
+    print(f"METRIC heuristic_valid={heuristic_success}")
+
+    if heuristic_success:
+        vlan_count_h = len(heuristic_segmentation.vlan_to_nodes)
+        print(f"METRIC heuristic_vlans={vlan_count_h}")
+        print(f"METRIC heuristic_time={heuristic_time}")
+    else:
+        print("METRIC heuristic_vlans=")
+        print("METRIC heuristic_time=")
 
     # ---------------------------
     # Z3 SOLVER
@@ -100,7 +121,7 @@ def main():
     print_section("Z3 SOLVER")
 
     nodes = list(topology.graph.nodes())
-    vlans = [10, 20, 30, 40]
+    vlans = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 
     start_time = time.perf_counter()
 
@@ -129,6 +150,24 @@ def main():
             print("Status: INVALID (unexpected)")
 
         print(f"Execution Time: {z3_time:.6f} seconds")
+        
+    # Z3 METRICS
+    print(f"METRIC z3_sat={z3_segmentation is not None}")
+
+    z3_success = (
+        z3_validation is not None
+        and z3_validation.is_valid()
+    )
+
+    print(f"METRIC z3_valid={z3_success}")
+
+    if z3_success:
+        vlan_count_z3 = len(z3_segmentation.vlan_to_nodes)
+        print(f"METRIC z3_vlans={vlan_count_z3}")
+        print(f"METRIC z3_time={z3_time}")
+    else:
+        print("METRIC z3_vlans=")
+        print("METRIC z3_time=")
 
     # ---------------------------
     # RESULT
@@ -159,41 +198,58 @@ def main():
     # ---------------------------
     print_section("VISUALIZATION")
 
-    # --- HEURISTIC ---
-    if (
-        heuristic_segmentation is not None
-        and heuristic_validation
-        and heuristic_validation.is_valid()
-    ):
-        print("Rendering Heuristic...")
-        visualize_graph(topology.graph, heuristic_segmentation, "Heuristic")
-
+    if not visualize:
+        print("Visualization disabled (batch mode)")
     else:
-        print("Skipping Heuristic (no valid solution)")
+        # --- HEURISTIC ---
+        if (
+            heuristic_segmentation is not None
+            and heuristic_validation
+            and heuristic_validation.is_valid()
+        ):
+            print("Rendering Heuristic...")
+            visualize_graph(
+                topology.graph,
+                heuristic_segmentation,
+                f"{dataset_name} - Heuristic"
+            )
 
-    # --- Z3 ---
-    if z3_segmentation is not None:
-        print("Rendering Z3...")
-        visualize_graph(topology.graph, z3_segmentation, "Z3 Solver")
+        else:
+            print("Skipping Heuristic (no valid solution)")
 
-    else:
-        print("Skipping Z3 (no solution)")
+        # --- Z3 ---
+        if z3_segmentation is not None:
+            print("Rendering Z3...")
+            visualize_graph(
+                topology.graph,
+                z3_segmentation,
+                f"{dataset_name} - Z3 Solver"
+            )
+
+        else:
+            print("Skipping Z3 (no solution)")
 
     # ---------------------------
     # PERFORMANCE
     # ---------------------------
     print_section("PERFORMANCE")
 
-    if heuristic_time is not None:
+    if heuristic_success:
         print(f"Heuristic Time: {heuristic_time:.6f} seconds")
+    else:
+        print("Heuristic Time: FAILED")
 
-    if z3_time is not None:
+    if z3_success:
         print(f"Z3 Time:        {z3_time:.6f} seconds")
+    else:
+        print("Z3 Time:        FAILED")
 
-    if heuristic_time is not None and z3_time is not None:
-        ratio = z3_time / heuristic_time if heuristic_time > 0 else float("inf")
-
-    print(f"\nZ3 / Heuristic Ratio: {ratio:.2f}x")
+    if heuristic_success and z3_success:
+        ratio = z3_time / heuristic_time
+        print(f"\nZ3 / Heuristic Ratio: {ratio:.2f}x")
+        print(f"METRIC ratio={ratio}")
+    else:
+        print("METRIC ratio=")
 
 
 if __name__ == "__main__":

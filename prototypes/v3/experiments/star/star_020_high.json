@@ -1,0 +1,430 @@
+{
+    "nodes": [
+        "Host1",
+        "Host2",
+        "Host3",
+        "Host4",
+        "Host5",
+        "Host6",
+        "Host7",
+        "Host8",
+        "Host9",
+        "Host10",
+        "Host11",
+        "Host12",
+        "Host13",
+        "Host14",
+        "Host15",
+        "Host16",
+        "Host17",
+        "Host18",
+        "Host19",
+        "Host20"
+    ],
+    "switches": [
+        "Switch1"
+    ],
+    "groups": [],
+    "constraints": [
+        {
+            "type": "DENY",
+            "src": "Host7",
+            "dst": "Host19"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host3",
+            "dst": "Host15"
+        },
+        {
+            "type": "DENY",
+            "src": "Host2",
+            "dst": "Host12"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host12",
+            "dst": "Host18"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host9",
+            "dst": "Host16"
+        },
+        {
+            "type": "DENY",
+            "src": "Host1",
+            "dst": "Host3"
+        },
+        {
+            "type": "DENY",
+            "src": "Host5",
+            "dst": "Host7"
+        },
+        {
+            "type": "DENY",
+            "src": "Host5",
+            "dst": "Host20"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host9",
+            "dst": "Host11"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host4",
+            "dst": "Host7"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host14",
+            "dst": "Host18"
+        },
+        {
+            "type": "DENY",
+            "src": "Host1",
+            "dst": "Host20"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host14",
+            "dst": "Host20"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host2",
+            "dst": "Host5"
+        },
+        {
+            "type": "DENY",
+            "src": "Host4",
+            "dst": "Host9"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host4",
+            "dst": "Host18"
+        },
+        {
+            "type": "DENY",
+            "src": "Host11",
+            "dst": "Host12"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host5",
+            "dst": "Host6"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host15",
+            "dst": "Host17"
+        },
+        {
+            "type": "DENY",
+            "src": "Host9",
+            "dst": "Host19"
+        },
+        {
+            "type": "DENY",
+            "src": "Host11",
+            "dst": "Host17"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host12",
+            "dst": "Host14"
+        },
+        {
+            "type": "DENY",
+            "src": "Host6",
+            "dst": "Host17"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host10",
+            "dst": "Host20"
+        },
+        {
+            "type": "DENY",
+            "src": "Host3",
+            "dst": "Host14"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host6",
+            "dst": "Host9"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host8",
+            "dst": "Host15"
+        },
+        {
+            "type": "DENY",
+            "src": "Host19",
+            "dst": "Host20"
+        },
+        {
+            "type": "DENY",
+            "src": "Host6",
+            "dst": "Host18"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host7",
+            "dst": "Host10"
+        },
+        {
+            "type": "DENY",
+            "src": "Host4",
+            "dst": "Host15"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host3",
+            "dst": "Host13"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host3",
+            "dst": "Host8"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host4",
+            "dst": "Host12"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host7",
+            "dst": "Host14"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host1",
+            "dst": "Host16"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host8",
+            "dst": "Host19"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host6",
+            "dst": "Host11"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host1",
+            "dst": "Host6"
+        },
+        {
+            "type": "DENY",
+            "src": "Host4",
+            "dst": "Host13"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host11",
+            "dst": "Host16"
+        },
+        {
+            "type": "DENY",
+            "src": "Host12",
+            "dst": "Host13"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host4",
+            "dst": "Host20"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host12",
+            "dst": "Host20"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host7",
+            "dst": "Host12"
+        },
+        {
+            "type": "DENY",
+            "src": "Host8",
+            "dst": "Host16"
+        },
+        {
+            "type": "DENY",
+            "src": "Host13",
+            "dst": "Host18"
+        },
+        {
+            "type": "DENY",
+            "src": "Host14",
+            "dst": "Host16"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host1",
+            "dst": "Host9"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host5",
+            "dst": "Host16"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host13",
+            "dst": "Host19"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host10",
+            "dst": "Host18"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host2",
+            "dst": "Host16"
+        },
+        {
+            "type": "DENY",
+            "src": "Host1",
+            "dst": "Host12"
+        },
+        {
+            "type": "DENY",
+            "src": "Host2",
+            "dst": "Host17"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host6",
+            "dst": "Host16"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host3",
+            "dst": "Host19"
+        },
+        {
+            "type": "DENY",
+            "src": "Host11",
+            "dst": "Host18"
+        },
+        {
+            "type": "DENY",
+            "src": "Host3",
+            "dst": "Host4"
+        },
+        {
+            "type": "ALLOW",
+            "src": "Host3",
+            "dst": "Host17"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host1",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host2",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host3",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host4",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host5",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host6",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host7",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host8",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host9",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host10",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host11",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host12",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host13",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host14",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host15",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host16",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host17",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host18",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host19",
+            "switch": "Switch1"
+        },
+        {
+            "type": "LOCATED_AT",
+            "node": "Host20",
+            "switch": "Switch1"
+        }
+    ]
+}
