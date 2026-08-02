@@ -9,6 +9,7 @@ from microseg.validation.validator import ConstraintValidator
 
 import sys
 import time
+from pathlib import Path
 
 def print_section(title):
     print(f"\n=== {title} ===")
@@ -26,6 +27,7 @@ def main():
     print_section("LOAD")
 
     dataset_path = sys.argv[1] if len(sys.argv) > 1 else "datasets/synthetic/simple_scenario.json"
+    dataset_name = Path(dataset_path).stem
     constraints, groups = load_dataset(dataset_path)
 
     print(f"Constraints loaded: {len(constraints)}")
@@ -196,7 +198,11 @@ def main():
             and heuristic_validation.is_valid()
         ):
             print("Rendering Heuristic...")
-            visualize_graph(topology.graph, heuristic_segmentation, "Heuristic")
+            visualize_graph(
+                topology.graph,
+                heuristic_segmentation,
+                f"{dataset_name} - Heuristic"
+            )
 
         else:
             print("Skipping Heuristic (no valid solution)")
@@ -204,7 +210,11 @@ def main():
         # --- Z3 ---
         if z3_segmentation is not None:
             print("Rendering Z3...")
-            visualize_graph(topology.graph, z3_segmentation, "Z3 Solver")
+            visualize_graph(
+                topology.graph,
+                z3_segmentation,
+                f"{dataset_name} - Z3 Solver"
+            )
 
         else:
             print("Skipping Z3 (no solution)")
