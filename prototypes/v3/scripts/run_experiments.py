@@ -1,6 +1,7 @@
 import subprocess
 import csv
 from pathlib import Path
+import shutil
 
 EXPERIMENTS_DIR = Path("experiments")
 LOG_DIR = EXPERIMENTS_DIR / "logs"
@@ -8,6 +9,10 @@ CSV_PATH = EXPERIMENTS_DIR / "results.csv"
 
 LOG_DIR.mkdir(parents=True, exist_ok=True)
 
+def clear_logs():
+    if LOG_DIR.exists():
+        shutil.rmtree(LOG_DIR)
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
 
 def extract_metrics(output: str):
     metrics = {}
@@ -50,6 +55,7 @@ def run_experiment(file: Path):
 
 
 def run_all():
+    clear_logs()
     results = []
 
     for file in EXPERIMENTS_DIR.rglob("*.json"):
