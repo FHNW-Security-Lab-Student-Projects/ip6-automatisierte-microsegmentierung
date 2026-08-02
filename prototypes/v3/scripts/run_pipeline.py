@@ -104,6 +104,8 @@ def main():
         heuristic_validation is not None
         and heuristic_validation.is_valid()
     )
+    
+    print(f"METRIC heuristic_valid={heuristic_success}")
 
     if heuristic_success:
         vlan_count_h = len(heuristic_segmentation.vlan_to_nodes)

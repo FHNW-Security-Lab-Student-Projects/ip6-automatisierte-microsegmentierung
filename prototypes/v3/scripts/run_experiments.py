@@ -32,8 +32,8 @@ def run_experiment(file: Path):
     print(f"Running: {file}")
 
     result = subprocess.run(
-        # ["python3", "scripts/run_pipeline.py", str(file), "--no-vis"],
-        ["python3", "scripts/run_pipeline.py", str(file), ""],
+        ["python3", "scripts/run_pipeline.py", str(file), "--no-vis"],
+        # ["python3", "scripts/run_pipeline.py", str(file), ""],
         capture_output=True,
         text=True
     )
